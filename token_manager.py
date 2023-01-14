@@ -2,6 +2,8 @@ import os
 import time
 import json
 import requests
+import webbrowser
+import getpass
 from dotenv import load_dotenv
 from base64 import b64encode
 
@@ -14,7 +16,8 @@ def get_token():
 
     auth_url = f'https://cad.onshape.com/oauth/authorize?client_id={client_id}&response_type=code'
     print(f'Please go to the following URL to authorize the application: {auth_url}')
-    code = input('Enter the authorization code: ')
+    webbrowser.open(auth_url)
+    code = getpass.getpass('Enter the authorization code: ')
 
     data = {
         'grant_type': 'authorization_code',
